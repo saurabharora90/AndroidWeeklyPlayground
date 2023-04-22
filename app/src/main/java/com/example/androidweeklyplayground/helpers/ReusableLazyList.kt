@@ -2,6 +2,7 @@ package com.example.androidweeklyplayground.helpers
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
@@ -32,7 +33,7 @@ fun ReusableVerticalLazyList(modifier: Modifier = Modifier,
         //horizontalAlignment =,
         content = {
             items(items = content) {
-                Text(text = it)
+                Text(text = it, modifier = Modifier.fillMaxWidth())
             }
         })
 }
