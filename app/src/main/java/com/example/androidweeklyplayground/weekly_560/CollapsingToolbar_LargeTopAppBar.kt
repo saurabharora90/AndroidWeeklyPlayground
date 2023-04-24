@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -22,7 +21,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -76,14 +74,11 @@ fun CollapsingToolBarLargeTopAppBar(modifier: Modifier = Modifier) {
                 ),
                 scrollBehavior = topBarScrollBehaviour
             )
-            LaunchedEffect(key1 = Unit, block = {
-                snapshotFlow { topBarScrollBehaviour.state.collapsedFraction }
-                    .collect {
-                        if (it > 0.5f)
-                            titleBarColor.animateTo(Color.White)
-                        else
-                            titleBarColor.animateTo(Color.Cyan)
-                    }
+            LaunchedEffect(key1 = topBarScrollBehaviour.state.collapsedFraction, block = {
+                if (topBarScrollBehaviour.state.collapsedFraction > 0.5f)
+                    titleBarColor.animateTo(Color.White)
+                else
+                    titleBarColor.animateTo(Color.Cyan)
             })
         }
     }) {
