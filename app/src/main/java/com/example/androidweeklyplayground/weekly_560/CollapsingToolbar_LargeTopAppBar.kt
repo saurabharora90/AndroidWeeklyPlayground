@@ -1,6 +1,5 @@
 package com.example.androidweeklyplayground.weekly_560
 
-import androidx.compose.animation.Animatable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -19,7 +18,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,7 +38,14 @@ fun CollapsingToolBarLargeTopAppBar(modifier: Modifier = Modifier) {
     val topBarScrollBehaviour = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold(modifier = modifier, topBar = {
         Box(modifier = Modifier.height(IntrinsicSize.Min)) {
-            val titleBarColor = remember { Animatable(Color.Cyan) }
+            val titleBarColor = remember {
+                derivedStateOf {
+                    if (topBarScrollBehaviour.state.collapsedFraction > 0.5f)
+                        Color.White
+                    else
+                        Color.Cyan
+                }
+            }
             Image(
                 painter = painterResource(id = R.drawable.scenery),
                 contentScale = ContentScale.Crop,
@@ -74,12 +80,6 @@ fun CollapsingToolBarLargeTopAppBar(modifier: Modifier = Modifier) {
                 ),
                 scrollBehavior = topBarScrollBehaviour
             )
-            LaunchedEffect(key1 = topBarScrollBehaviour.state.collapsedFraction, block = {
-                if (topBarScrollBehaviour.state.collapsedFraction > 0.5f)
-                    titleBarColor.animateTo(Color.White)
-                else
-                    titleBarColor.animateTo(Color.Cyan)
-            })
         }
     }) {
         ReusableVerticalLazyList(
