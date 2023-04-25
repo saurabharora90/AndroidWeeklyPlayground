@@ -1,6 +1,5 @@
 package com.example.androidweeklyplayground.weekly_534
 
-import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -30,23 +29,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.androidweeklyplayground.R
+import com.example.androidweeklyplayground.helpers.Content
+import com.example.androidweeklyplayground.helpers.getDefaultContent
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.toImmutableList
-
-private fun getDefaultContent(context: Context): ImmutableList<Content> {
-    val list = mutableListOf<Content>()
-    repeat(20) {
-        list.add(
-            Content(
-                "Item #$it",
-                "Content for item $it : " + context.resources.getString(R.string.lorem_ipsum)
-            )
-        )
-    }
-
-    return list.toImmutableList()
-}
 
 @Composable
 fun ExpandableListScreen(

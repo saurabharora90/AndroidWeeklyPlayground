@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Android Weekly Playground</string>
+
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent egestas, metus vitae lobortis aliquet, sapien enim tincidunt libero, quis commodo justo tortor id ipsum. Proin fringilla magna id lobortis maximus. Mauris in facilisis massa. Curabitur felis neque, ullamcorper in elit vel, vestibulum pulvinar tellus. In sed turpis ligula. In hac habitasse platea dictumst. Quisque et nibh dignissim, aliquet sapien eget, bibendum enim. Aliquam finibus justo id ligula dictum varius. Suspendisse rhoncus, nulla et blandit pharetra, ex diam bibendum justo, non rutrum augue libero sodales ligula. Ut nec metus sed augue finibus sodales. Vestibulum faucibus, felis in auctor posuere, ipsum velit condimentum libero, sit amet hendrerit mauris magna quis nunc. Fusce condimentum magna eu mi ullamcorper accumsan</string>
 </resources>
