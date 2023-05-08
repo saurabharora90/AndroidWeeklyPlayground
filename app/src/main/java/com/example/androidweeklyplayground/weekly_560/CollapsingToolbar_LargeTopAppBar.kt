@@ -32,7 +32,6 @@ import com.example.androidweeklyplayground.helpers.ReusableVerticalLazyList
 import com.example.androidweeklyplayground.ui.theme.AndroidWeeklyPlaygroundTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
 fun CollapsingToolBarLargeTopAppBar(modifier: Modifier = Modifier) {
     val topBarScrollBehaviour = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()

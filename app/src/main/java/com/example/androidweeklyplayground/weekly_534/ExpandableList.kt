@@ -83,7 +83,7 @@ private fun HeaderText(header: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun BodyView(body: String, modifier: Modifier = Modifier) {
+private fun BodyView(body: String, modifier: Modifier = Modifier) {
     Text(
         text = body,
         modifier = modifier

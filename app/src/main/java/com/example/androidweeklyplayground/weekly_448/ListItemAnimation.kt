@@ -11,7 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-class ListItemAnimation(
+internal class ListItemAnimation(
     private val animationState: MutableTransitionState<ListItemAnimationState>,
     private val offsetState: State<Dp>,
     private val alphaState: State<Float>
@@ -33,7 +33,7 @@ enum class ListItemAnimationState {
 }
 
 @Composable
-fun rememberListItemAnimation(
+internal fun rememberListItemAnimation(
     key: Any,
     initialState: ListItemAnimationState = ListItemAnimationState.INITIAL
 ): ListItemAnimation {
