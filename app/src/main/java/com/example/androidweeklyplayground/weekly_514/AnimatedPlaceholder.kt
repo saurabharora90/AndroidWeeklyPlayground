@@ -9,6 +9,8 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -26,13 +28,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.seconds
 
+@Destination
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchBar(modifier: Modifier = Modifier, initialValue: String = "") {
-    var entry by remember { mutableStateOf(initialValue) }
+fun AnimatedPlaceHolderScreen(modifier: Modifier = Modifier
+    .fillMaxWidth()
+    .padding(16.dp)) {
+    var entry by remember { mutableStateOf("") }
     TextField(
         value = entry,
         onValueChange = { entry = it },

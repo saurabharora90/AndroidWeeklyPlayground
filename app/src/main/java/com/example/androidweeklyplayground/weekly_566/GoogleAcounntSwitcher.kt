@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -21,12 +22,17 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -41,15 +47,68 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.example.androidweeklyplayground.R
+import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
+private val accountInfo = listOf(
+    AccountInfo(R.drawable.horse),
+    AccountInfo(R.drawable.dog),
+    AccountInfo(R.drawable.cat),
+)
+
+@Destination
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun GoogleAccountSwitcherScreen(accountInfos: List<AccountInfo> = accountInfo) {
+    // A surface container using the 'background' color from the theme
+    Surface {
+        Scaffold(topBar = {
+            var currentlySelectedAccountIndex by remember { mutableStateOf(0) }
+            GoogleAccountSwitcherWithSwipeable(
+                accountInfo = accountInfos[currentlySelectedAccountIndex],
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp, vertical = 16.dp),
+                onNextAccount = {
+                    if (currentlySelectedAccountIndex == accountInfos.size - 1) {
+                        currentlySelectedAccountIndex = 0
+                    } else {
+                        currentlySelectedAccountIndex++
+                    }
+                },
+                onPreviousAccount = {
+                    if (currentlySelectedAccountIndex == 0) {
+                        currentlySelectedAccountIndex = accountInfos.size - 1
+                    } else {
+                        currentlySelectedAccountIndex--
+                    }
+                }
+            )
+        }, content = {
+            var currentlySelectedAccountIndex by remember { mutableStateOf(0) }
+            GoogleAccountSwitcherWithPointerInput(
+                accountInfo = accountInfos[currentlySelectedAccountIndex], modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(it)
+                    .padding(horizontal = 8.dp, vertical = 16.dp)
+            ) {
+                if (currentlySelectedAccountIndex == accountInfos.size - 1) {
+                    currentlySelectedAccountIndex = 0
+                } else {
+                    currentlySelectedAccountIndex++
+                }
+            }
+        })
+    }
+}
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
-fun GoogleAccountSwitcherWithSwipeable(
+private fun GoogleAccountSwitcherWithSwipeable(
     accountInfo: AccountInfo,
     modifier: Modifier = Modifier,
     onNextAccount: () -> Unit,
@@ -132,7 +191,7 @@ fun GoogleAccountSwitcherWithSwipeable(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GoogleAccountSwitcherWithPointerInput(
+private fun GoogleAccountSwitcherWithPointerInput(
     accountInfo: AccountInfo,
     modifier: Modifier = Modifier,
     onAccountChanged: () -> Unit

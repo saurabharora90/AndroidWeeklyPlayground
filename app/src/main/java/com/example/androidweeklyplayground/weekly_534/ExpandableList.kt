@@ -31,8 +31,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.androidweeklyplayground.helpers.Content
 import com.example.androidweeklyplayground.helpers.getDefaultContent
+import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.collections.immutable.ImmutableList
 
+@Destination
 @Composable
 fun ExpandableListScreen(
     modifier: Modifier = Modifier,

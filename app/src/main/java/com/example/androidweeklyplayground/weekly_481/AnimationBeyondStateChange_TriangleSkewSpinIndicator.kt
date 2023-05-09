@@ -5,6 +5,8 @@ import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,9 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
 
+@Destination
 @Composable
-fun TriangleSkewSpinIndicator(modifier: Modifier = Modifier) {
+fun TriangleSkewSpinIndicator(modifier: Modifier = Modifier
+    .requiredSize(120.dp)) {
     val rotationX = remember { Animatable(0.0f) }
     val rotationY = remember { Animatable(0.0f) }
 

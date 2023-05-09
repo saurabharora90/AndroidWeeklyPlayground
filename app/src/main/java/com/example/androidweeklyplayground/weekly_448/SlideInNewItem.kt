@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.example.androidweeklyplayground.helpers.Content
 import com.example.androidweeklyplayground.helpers.getDefaultContent
+import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable
@@ -51,6 +52,7 @@ private fun NewsItem(content: Content, index: Int, modifier: Modifier = Modifier
     })
 }
 
+@Destination
 @Composable
 fun ItemAnimatedList(
     content: ImmutableList<Content> = getDefaultContent(LocalContext.current),

@@ -30,7 +30,9 @@ import androidx.compose.ui.unit.dp
 import com.example.androidweeklyplayground.R
 import com.example.androidweeklyplayground.helpers.ReusableVerticalLazyList
 import com.example.androidweeklyplayground.ui.theme.AndroidWeeklyPlaygroundTheme
+import com.ramcosta.composedestinations.annotation.Destination
 
+@Destination
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CollapsingToolBarLargeTopAppBar(modifier: Modifier = Modifier) {

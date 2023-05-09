@@ -9,6 +9,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.runtime.Composable
@@ -17,9 +18,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
 
+@Destination
 @Composable
-fun BallPulseSyncIndicator(modifier: Modifier = Modifier) {
+fun BallPulseSyncIndicator(modifier: Modifier = Modifier.fillMaxSize()) {
     val transition = rememberInfiniteTransition(label = "ball")
     val finalValue = -90.0f
     val animationValues = (1..3).map {

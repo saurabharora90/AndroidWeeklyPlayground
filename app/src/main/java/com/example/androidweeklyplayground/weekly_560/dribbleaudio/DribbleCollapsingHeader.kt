@@ -42,7 +42,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.androidweeklyplayground.R
 import com.example.androidweeklyplayground.helpers.ReusableVerticalLazyList
+import com.ramcosta.composedestinations.annotation.Destination
 
+@Destination
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DribbleScreen(modifier: Modifier = Modifier) {
