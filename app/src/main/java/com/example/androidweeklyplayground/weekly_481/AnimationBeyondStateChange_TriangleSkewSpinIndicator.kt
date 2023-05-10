@@ -21,6 +21,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 @Destination
 @Composable
 fun TriangleSkewSpinIndicator(modifier: Modifier = Modifier
+    .fillMaxSize()
     .requiredSize(120.dp)) {
     val rotationX = remember { Animatable(0.0f) }
     val rotationY = remember { Animatable(0.0f) }
