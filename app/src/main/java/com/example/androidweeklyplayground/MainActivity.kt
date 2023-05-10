@@ -15,10 +15,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
 import com.example.androidweeklyplayground.ui.theme.AndroidWeeklyPlaygroundTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.utils.startDestination
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -29,37 +32,48 @@ class MainActivity : ComponentActivity() {
         setContent {
             val scaffoldState = rememberScaffoldState()
             val coroutineScope = rememberCoroutineScope()
+            val navController = rememberNavController()
+            val currentDestination = navController.appCurrentDestinationAsState().value
+                ?: NavGraphs.root.startDestination
+            val shouldShowDrawer = remember(currentDestination) {
+                currentDestination == NavGraphs.root.startDestination
+            }
+
             AndroidWeeklyPlaygroundTheme {
                 Scaffold(
                     scaffoldState = scaffoldState,
                     topBar = {
-                        TopAppBar(
-                            title = { Text(text = "Android Weekly Playground") },
-                            navigationIcon = {
-                                IconButton(onClick = {
-                                    coroutineScope.launch {
-                                        if (scaffoldState.drawerState.isClosed)
-                                            scaffoldState.drawerState.open()
-                                        else
-                                            scaffoldState.drawerState.close()
+                        if (shouldShowDrawer) {
+                            TopAppBar(
+                                title = { Text(text = "Android Weekly Playground") },
+                                navigationIcon = {
+                                    IconButton(onClick = {
+                                        coroutineScope.launch {
+                                            if (scaffoldState.drawerState.isClosed)
+                                                scaffoldState.drawerState.open()
+                                            else
+                                                scaffoldState.drawerState.close()
+                                        }
+                                    }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Menu,
+                                            contentDescription = "Menu"
+                                        )
                                     }
-                                }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Menu,
-                                        contentDescription = "Menu"
-                                    )
-                                }
-                            },
-                            colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
-                        )
+                                },
+                                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+                            )
+                        }
                     },
                     drawerContent = {
 
                     },
+                    drawerGesturesEnabled = shouldShowDrawer
                 ) { paddingValues ->
                     DestinationsNavHost(
                         navGraph = NavGraphs.root,
-                        modifier = Modifier.padding(paddingValues)
+                        modifier = Modifier.padding(paddingValues),
+                        navController = navController
                     )
                 }
             }
