@@ -36,6 +36,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.example.androidweeklyplayground.ui.theme.AndroidWeeklyPlaygroundTheme
+import com.example.androidweeklyplayground.ui.theme.AppThemeState
+import com.example.androidweeklyplayground.ui.theme.rememberAppThemeState
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.utils.startDestination
 import kotlinx.coroutines.launch
@@ -111,7 +113,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun ColumnScope.Drawer(onChangeThemeClicked: () -> Unit) {
+private fun ColumnScope.Drawer(
+    appThemeState: AppThemeState = rememberAppThemeState(),
+    onChangeThemeClicked: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -131,7 +136,7 @@ private fun ColumnScope.Drawer(onChangeThemeClicked: () -> Unit) {
                 modifier = Modifier.alignByBaseline()
             )
             Text(
-                text = "Test",
+                text = appThemeState.currentTheme.name,
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.alignByBaseline()
             )
