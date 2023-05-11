@@ -43,15 +43,16 @@ import androidx.compose.ui.unit.dp
 import com.example.androidweeklyplayground.R
 import com.example.androidweeklyplayground.helpers.ReusableVerticalLazyList
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Destination
 @Composable
-fun DribbleScreen(modifier: Modifier = Modifier) {
+fun DribbleScreen(modifier: Modifier = Modifier, navigator: DestinationsNavigator) {
     val headerState = rememberHeaderState()
     Scaffold(modifier = modifier,
         topBar = {
             Column(modifier = Modifier.shadow(headerState.headerElevation)) {
-                Toolbar()
+                Toolbar { navigator.navigateUp() }
                 PlayBackInfo(
                     modifier = Modifier.padding(top = 32.dp),
                     imageSize = headerState.imageSize
@@ -101,7 +102,7 @@ private fun PlayBackInfo(
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun Toolbar(modifier: Modifier = Modifier) {
+private fun Toolbar(modifier: Modifier = Modifier, onBackPressed: () -> Unit) {
     CenterAlignedTopAppBar(modifier = modifier,
         title = {
             Text(
@@ -110,7 +111,7 @@ private fun Toolbar(modifier: Modifier = Modifier) {
             )
         },
         navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = onBackPressed) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
             }
         }, actions = {
