@@ -45,7 +45,6 @@ import com.example.androidweeklyplayground.helpers.ReusableVerticalLazyList
 import com.ramcosta.composedestinations.annotation.Destination
 
 @Destination
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DribbleScreen(modifier: Modifier = Modifier) {
     val headerState = rememberHeaderState()

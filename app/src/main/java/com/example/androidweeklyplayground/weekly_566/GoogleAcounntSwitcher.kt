@@ -61,7 +61,6 @@ private val accountInfo = listOf(
 )
 
 @Destination
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GoogleAccountSwitcherScreen(accountInfos: List<AccountInfo> = accountInfo) {
     // A surface container using the 'background' color from the theme
