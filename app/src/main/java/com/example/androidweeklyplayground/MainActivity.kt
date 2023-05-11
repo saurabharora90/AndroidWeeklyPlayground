@@ -12,16 +12,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.DrawerValue
-import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.rememberDrawerState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -41,6 +41,8 @@ import com.ramcosta.composedestinations.utils.startDestination
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+
+
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +92,8 @@ class MainActivity : ComponentActivity() {
                         Drawer { showBottomSheet = true }
                     },
                     drawerGesturesEnabled = shouldShowDrawer,
+                    drawerBackgroundColor = MaterialTheme.colorScheme.surface,
+                    backgroundColor = MaterialTheme.colorScheme.background,
                 ) { paddingValues ->
                     DestinationsNavHost(
                         navGraph = NavGraphs.root,

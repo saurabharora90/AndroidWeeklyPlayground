@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.androidweeklyplayground.ui.theme.Theme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,9 +50,9 @@ fun ThemeSelectorBottomSheet(
         val paddingModifier = remember {
             Modifier.padding(vertical = 4.dp, horizontal = 16.dp)
         }
-        ThemeOption("Dark", false, paddingModifier)
-        ThemeOption("Light", false, paddingModifier)
-        ThemeOption("System", true, paddingModifier)
+        Theme.values().forEach {
+            ThemeOption(it.name, false, paddingModifier)
+        }
     }
 }
 
