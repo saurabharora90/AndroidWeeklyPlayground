@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.PlayArrow
@@ -27,7 +25,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -134,29 +131,28 @@ private fun PlaybackControlsBottomBar(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.high) {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(imageVector = Icons.Default.ThumbUp, contentDescription = "Up")
-                }
-                IconButton(
-                    onClick = onPlayClicked,
-                    Modifier
-                        .clip(CircleShape)
-                        .background(Color.Red)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.PlayArrow,
-                        contentDescription = "Play",
-                    )
-                }
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = Icons.Default.ThumbUp,
-                        contentDescription = "Down",
-                        modifier = Modifier.rotate(180f)
-                    )
-                }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(imageVector = Icons.Default.ThumbUp, contentDescription = "Up")
             }
+            IconButton(
+                onClick = onPlayClicked,
+                Modifier
+                    .clip(CircleShape)
+                    .background(Color.Red)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.PlayArrow,
+                    contentDescription = "Play",
+                )
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Default.ThumbUp,
+                    contentDescription = "Down",
+                    modifier = Modifier.rotate(180f)
+                )
+            }
+
         }
     }
 }

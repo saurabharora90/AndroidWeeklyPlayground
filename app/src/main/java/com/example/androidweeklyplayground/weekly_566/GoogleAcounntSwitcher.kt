@@ -12,12 +12,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.FixedThreshold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.rememberSwipeableState
-import androidx.compose.material.swipeable
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -66,7 +62,7 @@ fun GoogleAccountSwitcherScreen(accountInfos: List<AccountInfo> = accountInfo) {
     // A surface container using the 'background' color from the theme
     Surface {
         Scaffold(topBar = {
-            var currentlySelectedAccountIndex by remember { mutableStateOf(0) }
+            /*var currentlySelectedAccountIndex by remember { mutableStateOf(0) }
             GoogleAccountSwitcherWithSwipeable(
                 accountInfo = accountInfos[currentlySelectedAccountIndex],
                 modifier = Modifier
@@ -86,7 +82,7 @@ fun GoogleAccountSwitcherScreen(accountInfos: List<AccountInfo> = accountInfo) {
                         currentlySelectedAccountIndex--
                     }
                 }
-            )
+            )*/
         }, content = {
             var currentlySelectedAccountIndex by remember { mutableStateOf(0) }
             GoogleAccountSwitcherWithPointerInput(
@@ -105,7 +101,7 @@ fun GoogleAccountSwitcherScreen(accountInfos: List<AccountInfo> = accountInfo) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
+/*@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 private fun GoogleAccountSwitcherWithSwipeable(
     accountInfo: AccountInfo,
@@ -187,6 +183,8 @@ private fun GoogleAccountSwitcherWithSwipeable(
             }
     }
 }
+
+ */
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
