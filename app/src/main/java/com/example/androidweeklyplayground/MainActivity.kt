@@ -1,5 +1,6 @@
 package com.example.androidweeklyplayground
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,8 +31,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
+import com.example.androidweeklyplayground.notification.createNotification
 import com.example.androidweeklyplayground.ui.theme.AndroidWeeklyPlaygroundTheme
 import com.example.androidweeklyplayground.ui.theme.AppThemeState
 import com.example.androidweeklyplayground.ui.theme.rememberAppThemeState
@@ -109,7 +112,8 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun Drawer(
+fun Drawer(
+    context: Context = LocalContext.current,
     appThemeState: AppThemeState = rememberAppThemeState(),
     onChangeThemeClicked: () -> Unit
 ) {
@@ -117,7 +121,7 @@ private fun Drawer(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 32.dp)
+                .padding(top = 32.dp)
                 .clickable(onClick = onChangeThemeClicked)
                 .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -131,6 +135,25 @@ private fun Drawer(
                 text = appThemeState.currentTheme.name,
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.alignByBaseline()
+            )
+        }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    context.createNotification(
+                        "Custom Notification",
+                        "Checkout this custom notification layout that we'll screenshot test",
+                        R.drawable.scenery
+                    )
+                }
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = "Post Notification",
+                style = MaterialTheme.typography.titleLarge,
             )
         }
     }
