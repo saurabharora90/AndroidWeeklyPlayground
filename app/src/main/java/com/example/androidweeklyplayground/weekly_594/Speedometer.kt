@@ -1,4 +1,4 @@
-package com.example.androidweeklyplayground.weekly_x
+package com.example.androidweeklyplayground.weekly_594
 
 import androidx.annotation.FloatRange
 import androidx.compose.animation.core.Animatable
